@@ -1,0 +1,29 @@
+
+
+
+
+- name: Run Java
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: java
+
+- name: Install Mysql ( to load database )
+  ansible.builtin.dnf:
+    name: mysql
+    state: latest
+
+- name: Lead Schema
+  ansible.builtin.shell: mysql -h mysql-dev.tusharbytes.com -uroot -pRoboShop@1 < /app/db/schema.sql
+
+- name: Lead app-user
+  ansible.builtin.shell: mysql -h mysql-dev.tusharbytes.com -uroot -pRoboShop@1 < /app/db/app-user.sql
+
+- name: Lead master-data
+  ansible.builtin.shell: mysql -h mysql-dev.tusharbytes.com -uroot -pRoboShop@1 < /app/db/master-data.sql
+
+
+- name: Run systemd_setup
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: systemd_setup
+

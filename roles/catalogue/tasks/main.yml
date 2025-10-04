@@ -1,0 +1,25 @@
+- name: Run NodeJs
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: nodejs
+
+- name: Copy Mongodb.repo file
+  ansible.builtin.copy:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
+
+- name: Install MongoDB
+  ansible.builtin.dnf:
+    name: mongodb-mongosh
+    state: latest
+
+- name: Lead master data
+  ansible.builtin.shell: mongosh --host MONGODB-SERVER-IPADDRESS </app/db/master-data.js
+
+- name: Run systemd_setup
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: systemd_setup
+
+
+
