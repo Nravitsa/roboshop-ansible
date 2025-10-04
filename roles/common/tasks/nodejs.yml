@@ -4,7 +4,7 @@
 - name: Install Nodejs
   ansible.builtin.dnf:
     name: nodejs
-    status: present
+    state: present
 
 - name: Load app pre-requisites
   ansible.builtin.include_tasks:

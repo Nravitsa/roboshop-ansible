@@ -2,7 +2,7 @@
 - name: Install golang
   ansible.builtin.dnf:
     name: golang
-    status: present
+    state: present
 
 - name: Load app pre-requisites
   ansible.builtin.include_tasks:
