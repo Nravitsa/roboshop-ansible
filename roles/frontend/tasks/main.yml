@@ -4,7 +4,7 @@
 
 - name: Install nginx
   ansible.builtin.dnf:
-    nmme: nginx
+    name: nginx
     state: latest
 
 - name: Copy nginx file
