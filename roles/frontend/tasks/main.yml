@@ -1,2 +1,36 @@
 - name: Disable Default Nginx and Enable nginx 1.24
   ansible.builtin.shell: dnf module disable nginx -y ; dnf module enable nginx:1.24 -y
+
+
+- name: Install nginx
+  ansible.builtin.dnf:
+    nmme: nginx
+    state: latest
+
+- name: Copy nginx file
+  ansible.builtin.copy:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+
+- name: Remove default content directory
+  ansible.builtin.file:
+    path: /usr/share/nginx/html
+    state: absent
+
+- name: Create nginx content directory
+  ansible.builtin.file:
+    path: /usr/share/nginx/html
+    state: directory
+
+- name: Download and extract content
+  ansible.builtin.unarchive:
+    src: https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
+    dest: /usr/share/nginx/html
+    remote_src: yes #it means url is a remote url, not local
+
+- name: Start Nginx service
+  ansible.builtin.systemd_service:
+    state: started
+    name: nginx
+    enable: true
+
