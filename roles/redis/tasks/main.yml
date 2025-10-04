@@ -2,7 +2,7 @@
   ansible.builtin.shell: dnf module disable redis -y ; dnf module enable redis:7 -y
 
 - name: Install redis-7
-  ansible:builtin.dnf:
+  ansible.builtin.dnf:
     name: redis
     state: latest
 

@@ -5,7 +5,7 @@
     dest: /etc/yum.repos.d/mongo.repo
 
 - name: Install MongoDB-7.0
-  ansible:builtin.dnf:
+  ansible.builtin.dnf:
     name: mongodb-org
     state: latest
 
