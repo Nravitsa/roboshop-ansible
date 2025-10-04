@@ -1,0 +1,23 @@
+
+
+
+one:
+	echo Hello - workld from one
+
+two:
+	@echo Hello - world from tow
+
+
+git-pull:
+	git pull
+
+three: git-pull
+	echo Git is pulled
+
+three:
+	echo Git is gonna be pulled
+	make git-pull
+	echo Git is pulled Noooob
+
+five:
+	echo Input - $(input) # input should be entered using cli
