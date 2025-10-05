@@ -12,14 +12,13 @@
     name: mysql
     state: latest
 
-- name: Load Schema
-  ansible.builtin.shell: mysql -h mysql-dev.tusharbytes.com -uroot -pRoboShop@1 < /app/db/schema.sql
+- name: Load to DB
+  ansible.builtin.shell: mysql -h mysql-dev.tusharbytes.com -uroot -pRoboShop@1 < /app/db/{{ item }}sql
+  loop:
+    - Schema
+    - app-user
+    - master-data
 
-- name: Load app-user
-  ansible.builtin.shell: mysql -h mysql-dev.tusharbytes.com -uroot -pRoboShop@1 < /app/db/app-user.sql
-
-- name: Load master-data
-  ansible.builtin.shell: mysql -h mysql-dev.tusharbytes.com -uroot -pRoboShop@1 < /app/db/master-data.sql
 
 - name: Run systemd_setup
   ansible.builtin.include_role:
