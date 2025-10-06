@@ -12,6 +12,6 @@ all:
 			-e ansible_user=tushar \
 			-e ansible_password=tushar@12345 \
 			-e app_name=$$app_name \
-			-e env=dev
+			-e env=dev \
 			roboshop.yml; \
 	done
