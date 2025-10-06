@@ -8,7 +8,7 @@
     state: latest
 
 - name: Copy nginx file
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: nginx.conf
     dest: /etc/nginx/nginx.conf
 
@@ -33,4 +33,3 @@
     state: started
     name: nginx
     enabled: true
-
