@@ -15,7 +15,7 @@
 - name: Load to DB
   ansible.builtin.shell: mysql -h mysql-dev.tusharbytes.com -uroot -pRoboShop@1 < /app/db/{{ item }}.sql
   loop:
-    - Schema
+    - schema
     - app-user
     - master-data
 
